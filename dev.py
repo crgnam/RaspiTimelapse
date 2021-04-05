@@ -17,37 +17,17 @@ def killgphoto2Process():
 
 shot_date = datetime.now().strftime("%Y-%m-%d")
 shot_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-picID = "PiShots"
 
-clearCommand = ["--folder", "/store_00020001/DCIM/100CANON", "-R", "--delete-all-files"]
-triggerCommand = ["--trigger-capture"]
-downloadCommand = ["--get-all-files"]
+triggerCommand = ["gphoto2 --capture-image-and-download"]
 
 save_location = "/home/pi/data"
 
-def createSaveFolder():
-    try:
-        os.makedirs(save_locaiton)
-    except:
-        print(save_location + " already exists.")
-    os.chdir(save_location)
-
-def captureImages():
+def captureImages(ID):
     gp(triggerCommand)
-    sleep(3) #TODO Consider removing?
-    gp(downloadCommand)
-    gp(clearCommand)
-
-def renameFiles(ID):
-    for filename in os.listdir("."):
-        if len(filename) < 13
-            if filename.endswith(".CR3"):
-                os.rename(filename, (shot_time + ID + ".CR3"))
-                print("Renamed the Image")
+    os.rename('capt0000.cr3', '~/data/image_{}.cr3'.format(ID))
 
 killgphoto2Process()
-gp(clearCommand)
-createSaveFolder()
 captureImages()
-renameFiles(picID)
 
+for ii in range(0,3):
+    captureImages(ii)
