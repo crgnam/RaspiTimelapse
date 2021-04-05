@@ -1,1 +1,3 @@
-# RaspiTimelapse
+# RaspiTimelapsepip 
+
+Run .\setup.sh
